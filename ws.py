@@ -73,6 +73,7 @@ def recreate_db():
 
     pass
 
+
 def test():
     print "TEST"
     recreate_db()
@@ -82,5 +83,5 @@ def test():
         pass
     pass
 
-test()
-#if __name__=='__main__':run(host='localhost', port=sys.argv[1])
+#test()
+if __name__=='__main__':run(host='localhost', port=sys.argv[1])
