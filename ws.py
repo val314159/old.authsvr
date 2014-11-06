@@ -1,6 +1,8 @@
-import os, sys, traceback as tb
+import gevent.monkey ; gevent.monkey.patch_all()
+import os, sys, traceback as tb, bottle, json
 from bottle import route, run, template
 from uuid import uuid4
+from cors import add_headers
 
 def DB(_=[]):
     if not _:
@@ -38,6 +40,29 @@ def login_user(email, password):
     for rs in DB().execute('''SELECT uuid,secret,state FROM auth WHERE email==? AND password==?''', (email,password)):
         return list(rs)
     return None,None,None
+
+@bottle.error(404)
+def error404(error):
+    add_headers(bottle.response)
+    return 'Nothing here, sorry'
+
+@route('/auth/login',method=['HEAD','OPTIONS'])
+def login():
+    add_headers(bottle.response)
+    return ''
+
+@route('/auth/login',method=['POST'])
+def login():
+    add_headers(bottle.response)
+    #print "AUTH LOGIN", dict(bottle.request.params)
+    #print "AUTH LOGIN", (bottle.request.body)
+    d = bottle.request.body.read()
+    #print "AUTH LOGIN", repr(d)
+    j = json.loads(d)
+    #print "AUTH LOGIN", repr(j)
+    ret = dict( data=j )
+    print "AUTH LOGIN RET", repr(ret)
+    return ret
 
 def resecret_user(uuid):
     secret = str(uuid4())
@@ -84,4 +109,4 @@ def test():
     pass
 
 #test()
-if __name__=='__main__':run(host='localhost', port=sys.argv[1])
+if __name__=='__main__':run(host='localhost', port=sys.argv[1],server='gevent')

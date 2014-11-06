@@ -1,18 +1,38 @@
-<div id="status">
-hey
+<!DOCTYPE html>
+<html>
+
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+<script src="scripts.js"></script>
+</head>
+
+<body>
+
+<div ng-app="myApp" ng-controller="appCtl">
+
+<hr>
+Log In {{G.login}}
+ {{G.username}}
+ {{G.password}}
+
+<li><input ng-model="G.username">
+<li><input ng-model="G.password">
+<li><button ng-click="login()">Log In</button>
+
+<hr>
+
+<li><button ng-click="testit()">Test It</button>
+
+<hr>
+<hr>
+
+QQ
+{{x}}
+ZZ
+
+  <p>Name: <input type="text" ng-model="name"></p>
+  <p ng-bind="name"></p>
 </div>
 
-<hr>
-Log In
-<li>email:    <input id="email">
-<li>password: <input id="password">
-<li><button onclick="login()">xxx</button>
-
-<hr>
-Test It
-<li><button onclick="verify()">xxx</button>
-
-<hr>
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.js"></script>
-<script src="scripts.js"></script>
+</body>
+</html>
