@@ -1,38 +1,34 @@
 <!DOCTYPE html>
 <html>
+  <head>
+  </head>
+  <body>
+    
+    <div ng-app="myApp" ng-controller="appCtl">
 
-<head>
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
-<script src="scripts.js"></script>
-</head>
+      <li>u: {{ G.username }}
+      <li>p: {{ G.password }}
+      <li>a: {{ G.accessToken }}
+      <li>L: {{ G.login }}
+      </li>
 
-<body>
+      <hr>
 
-<div ng-app="myApp" ng-controller="appCtl">
+      Log In
+      <li><input ng-model="G.username">
+      <li><input ng-model="G.password">
+      <li><input ng-click="login(G.username,G.password)" type="submit">
 
-<hr>
-Log In {{G.login}}
- {{G.username}}
- {{G.password}}
+      <hr>
 
-<li><input ng-model="G.username">
-<li><input ng-model="G.password">
-<li><button ng-click="login()">Log In</button>
+      Test It
+      <li><input ng-click="testit(G.accessToken)" type="submit">
 
-<hr>
+      <hr>
 
-<li><button ng-click="testit()">Test It</button>
-
-<hr>
-<hr>
-
-QQ
-{{x}}
-ZZ
-
-  <p>Name: <input type="text" ng-model="name"></p>
-  <p ng-bind="name"></p>
-</div>
-
-</body>
+    </div>
+    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.0/angular.min.js"></script>
+    <script src="z.js"></script>
+  </body>
 </html>
